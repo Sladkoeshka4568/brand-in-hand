@@ -12,7 +12,7 @@ import json
 
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = '5429272897:AAEambLvd2TsehQxfX5DoyKIXYLa_yS1TZc'
+API_TOKEN = '5803089804:AAGV3GbC3AhyiRmVEEnNjofW5svmZ6XM57A'
 
 with open('sneakers_data.json', 'r', encoding='utf-8') as file:
     data_shoes = json.load(file)
@@ -37,8 +37,21 @@ def unic_name():
     result = list(result)
     return result
 
+def unic_model(brand, data):
+    result = []
+    for i in data:
+        result.append(i['name'].split(f'{brand.upper()} ')[-1].strip())
 
+    result = set(result)
+    result = list(result)
+    return result
 
+def searth_model(brand, name_model, data):
+    result = []
+    for i in data:
+        if i['name'].split(f'{brand.upper()} ')[-1].strip() == name_model:
+            result.append(i)
+    return result
 
 
 
@@ -56,6 +69,7 @@ class Form(StatesGroup):
     size = State()  # Will be represented in storage as 'Form:age'
     min_price = State()  # Will be represented in storage as 'Form:gender'
     max_price = State()
+    model = State()
 
 
 @dp.message_handler(commands='start')
@@ -161,33 +175,47 @@ async def process_max_price_invalid(message: types.Message):
     """
     return await message.reply("Price gotta be a number.\nWhat price you need? (digits only)")
 
-
-
-
-
-
 @dp.message_handler(state=Form.max_price)
-async def process_gender(message: types.Message, state: FSMContext):
+async def process_max_price(message: types.Message, state: FSMContext):
+    """
+    Conversation's entry point
+    """
     async with state.proxy() as data:
         data['max_price'] = message.text
-        try:
-            total_search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
 
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
+
+    search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
+
+    markup.add(*sorted(unic_model(data['manufacturer'], search)))
+    await Form.max_price.set()
+    await message.reply("What model you need?", reply_markup=markup)
+    await Form.next()
+
+
+
+
+@dp.message_handler(state=Form.model)
+async def process_gender(message: types.Message, state: FSMContext):
+    async with state.proxy() as data:
+        data['model'] = message.text
+        try:
+            search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
+            total_search = searth_model(data['manufacturer'], data['model'], search)
             count = 0
             for val in total_search:
                 count += 1
                 if count == 9:
                     break
+
                 await bot.send_message(
-                    message.chat.id,
-                    md.text(
-                        md.text(val['image']),
-                        md.text(val['manufacturer']),
-                        md.text(val['name']),
-                        md.text(val['price']),
-                        md.text(val['link']),
-                        sep='\n',
-                    ))
+                    message.chat.id, md.text(
+                        md.hide_link(val['image']),
+                        md.text(val['name'], '\n'),
+                        md.text(val['price'] + ' p', '\n'),
+                        md.hlink('click to buy', val['link']),
+                        # sep='\n',
+                    ), parse_mode=ParseMode.HTML)
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
             markup.add('/start')
             await Form.manufacturer.set()
@@ -195,7 +223,7 @@ async def process_gender(message: types.Message, state: FSMContext):
         except:
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
             markup.add('/start')
-            await message.reply('Fuck you!!!', reply_markup=markup)
+            await message.reply('Try again', reply_markup=markup)
     # Finish conversation
     await state.finish()
 
