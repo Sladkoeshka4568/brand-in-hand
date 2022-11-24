@@ -6,52 +6,18 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.types import ParseMode
+from aiogram.types import ParseMode, InlineKeyboardMarkup
 from aiogram.utils import executor
 import json
+
+from filters.def_filters import search_data, unic_model, searth_model, unic_name
 
 logging.basicConfig(level=logging.INFO)
 
 API_TOKEN = '5803089804:AAGV3GbC3AhyiRmVEEnNjofW5svmZ6XM57A'
 
-with open('sneakers_data.json', 'r', encoding='utf-8') as file:
-    data_shoes = json.load(file)
 
-def search_data(manufacturer=None, size=None, price_min=None, price_max=None):
-    result = []
-    for f in data_shoes:
-        if f['manufacturer'] == manufacturer:
-            if int(f['price']) >= price_min and int(f['price']) <= price_max:
-                for s in f['size']:
-                    if size == int(s):
-                        result.append(f)
-                    else:
-                        continue
-    return result
 
-def unic_name():
-    result = []
-    for d in data_shoes:
-        result.append(d['manufacturer'])
-    result = set(result)
-    result = list(result)
-    return result
-
-def unic_model(brand, data):
-    result = []
-    for i in data:
-        result.append(i['name'].split(f'{brand.upper()} ')[-1].strip())
-
-    result = set(result)
-    result = list(result)
-    return result
-
-def searth_model(brand, name_model, data):
-    result = []
-    for i in data:
-        if i['name'].split(f'{brand.upper()} ')[-1].strip() == name_model:
-            result.append(i)
-    return result
 
 
 
@@ -78,11 +44,36 @@ async def cmd_start(message: types.Message):
     Conversation's entry point
     """
     # Set state
+    markup = InlineKeyboardMarkup()
+    button1 = InlineKeyboardMarkup(text='Catalog', callback_data='Catalog')
+    button2 = InlineKeyboardMarkup(text='Go to site', url='https://brand-in-hand.ru')
+    button3 = InlineKeyboardMarkup(text='Contact the manager', url='t.me/Pavel_Paulov')
+    markup.add(button1, button2, button3)
 
+
+
+    await bot.send_message(message.chat.id, "qweasdqweasdqweasdqweasd\nqweqweqweqweqweqw\nqweqweqweqweqwe\nqweqweqweqwe", reply_markup=markup)
+
+
+
+
+
+@dp.callback_query_handler(lambda c: c.data == 'Catalog')
+async def process_manufacturer(call: types.callback_query):
+    """
+    Conversation's entry point
+    """
+    # Set state
+    await bot.answer_callback_query(call.id)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
     markup.add(*sorted(unic_name()))
+
     await Form.manufacturer.set()
-    await message.reply("Hi there! What brand of shoes do you want?", reply_markup=markup)
+    await bot.send_message(call.message.chat.id, "What brand of shoes do you want?", reply_markup=markup)
+
+
+
+
 
 
 # You can use state '*' if you need to handle all states
@@ -186,11 +177,17 @@ async def process_max_price(message: types.Message, state: FSMContext):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
 
     search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
+    if len(search) == 0:
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
+        markup.add('/start')
+        await message.reply('Nothing', reply_markup=markup)
+    else:
 
-    markup.add(*sorted(unic_model(data['manufacturer'], search)))
-    await Form.max_price.set()
-    await message.reply("What model you need?", reply_markup=markup)
-    await Form.next()
+        markup.add(*sorted(unic_model(data['manufacturer'], search)))
+        await Form.max_price.set()
+        await message.reply("What model you need?", reply_markup=markup)
+        await Form.next()
+
 
 
 
@@ -199,10 +196,15 @@ async def process_max_price(message: types.Message, state: FSMContext):
 async def process_gender(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['model'] = message.text
-        try:
-            search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
-            total_search = searth_model(data['manufacturer'], data['model'], search)
-            count = 0
+
+        search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
+        total_search = searth_model(data['manufacturer'], data['model'], search)
+        count = 0
+        if len(total_search) == 0:
+            markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
+            markup.add('/start')
+            await message.reply('Nothing', reply_markup=markup)
+        else:
             for val in total_search:
                 count += 1
                 if count == 9:
@@ -214,21 +216,14 @@ async def process_gender(message: types.Message, state: FSMContext):
                         md.text(val['name'], '\n'),
                         md.text(val['price'] + ' p', '\n'),
                         md.hlink('click to buy', val['link']),
-                        # sep='\n',
                     ), parse_mode=ParseMode.HTML)
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
             markup.add('/start')
             await Form.manufacturer.set()
-            await message.reply(' ', reply_markup=markup)
-        except:
-            markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
-            markup.add('/start')
-            await message.reply('Try again', reply_markup=markup)
+            await message.reply("Let's start again", reply_markup=markup)
+
     # Finish conversation
     await state.finish()
-
-
-
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
