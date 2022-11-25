@@ -1,9 +1,12 @@
 import json
 
 
-with open('sneakers_data.json', 'r', encoding='utf-8') as file:
-    data_shoes = json.load(file)
+with open('filters/female_sneakers_data.json', 'r', encoding='utf-8') as file:
+    data_female = json.load(file)
 
+with open('filters/male_sneakers_data.json', 'r', encoding='utf-8') as file:
+    data_male = json.load(file)
+data_shoes = data_male + data_female
 
 def search_data(manufacturer=None, size=None, price_min=None, price_max=None):
     result = []

@@ -1,5 +1,4 @@
 import logging
-
 import aiogram.utils.markdown as md
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -36,6 +35,7 @@ class Form(StatesGroup):
     min_price = State()  # Will be represented in storage as 'Form:gender'
     max_price = State()
     model = State()
+    gender = State()
 
 
 @dp.message_handler(commands='start')
@@ -50,19 +50,30 @@ async def cmd_start(message: types.Message):
     button3 = InlineKeyboardMarkup(text='Contact the manager', url='t.me/Pavel_Paulov')
     markup.add(button1, button2, button3)
 
-
-
     await bot.send_message(message.chat.id, "qweasdqweasdqweasdqweasd\nqweqweqweqweqweqw\nqweqweqweqweqwe\nqweqweqweqwe", reply_markup=markup)
-
-
-
-
 
 @dp.callback_query_handler(lambda c: c.data == 'Catalog')
 async def process_manufacturer(call: types.callback_query):
     """
     Conversation's entry point
     """
+    # Set state
+    await bot.answer_callback_query(call.id)
+    markup = InlineKeyboardMarkup()
+    button_male = InlineKeyboardMarkup(text='Male', callback_data='Male')
+    button_female = InlineKeyboardMarkup(text='Female', callback_data='Female')
+    markup.add(button_male, button_female)
+    await bot.send_message(call.message.chat.id, 'qwe', reply_markup=markup)
+
+
+@dp.callback_query_handler(lambda c: c.data == 'Male' or c.data == 'Female')
+async def process_manufacturer(call: types.callback_query, state: FSMContext):
+    """
+    Conversation's entry point
+    """
+
+    async with state.proxy() as data:
+        data['gender'] = call.data
     # Set state
     await bot.answer_callback_query(call.id)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
@@ -216,6 +227,7 @@ async def process_gender(message: types.Message, state: FSMContext):
                         md.text(val['name'], '\n'),
                         md.text(val['price'] + ' p', '\n'),
                         md.hlink('click to buy', val['link']),
+                        md.text(data['gender'])
                     ), parse_mode=ParseMode.HTML)
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
             markup.add('/start')
