@@ -169,7 +169,6 @@ async def process_max_price(message: types.Message, state: FSMContext):
 
 
 
-# Check age. Age gotta be digit
 @dp.message_handler(lambda message: not message.text.isdigit(), state=Form.max_price)
 async def process_max_price_invalid(message: types.Message):
     """
@@ -191,7 +190,8 @@ async def process_max_price(message: types.Message, state: FSMContext):
     if len(search) == 0:
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
         markup.add('/start')
-        await message.reply('Nothing', reply_markup=markup)
+        await message.reply('Try again', reply_markup=markup)
+        await Form.next()
     else:
 
         markup.add(*sorted(unic_model(data['manufacturer'], search)))
@@ -211,28 +211,28 @@ async def process_gender(message: types.Message, state: FSMContext):
         search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
         total_search = searth_model(data['manufacturer'], data['model'], search)
         count = 0
-        if len(total_search) == 0:
-            markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
-            markup.add('/start')
-            await message.reply('Nothing', reply_markup=markup)
-        else:
-            for val in total_search:
-                count += 1
-                if count == 9:
-                    break
+        # if len(total_search) == 0:
+        #     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
+        #     markup.add('/start')
+        #     await message.reply('Try again', reply_markup=markup)
+        # else:
+        for val in total_search:
+            count += 1
+            if count == 9:
+                break
 
-                await bot.send_message(
-                    message.chat.id, md.text(
-                        md.hide_link(val['image']),
-                        md.text(val['name'], '\n'),
-                        md.text(val['price'] + ' p', '\n'),
-                        md.hlink('click to buy', val['link']),
-                        md.text(data['gender'])
+            await bot.send_message(
+                message.chat.id, md.text(
+                    md.hide_link(val['image']),
+                    md.text(val['name'], '\n'),
+                    md.text(val['price'] + ' p', '\n'),
+                    md.hlink('click to buy', val['link']),
+                    md.text(data['gender'])
                     ), parse_mode=ParseMode.HTML)
-            markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
-            markup.add('/start')
-            await Form.manufacturer.set()
-            await message.reply("Let's start again", reply_markup=markup)
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
+        markup.add('/start')
+        await Form.manufacturer.set()
+        await message.reply("Try again", reply_markup=markup)
 
     # Finish conversation
     await state.finish()
