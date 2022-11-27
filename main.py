@@ -1,5 +1,5 @@
 import os
-from main_bot import *
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -21,7 +21,8 @@ def parser(url):
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x1080')
-        driver = webdriver.Chrome(chrome_options=options)
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options)
+        # driver = webdriver.Chrome(chrome_options=options)
 
         wait = WebDriverWait(driver, 20, StaleElementReferenceException)
         driver.get(url=url)
