@@ -71,6 +71,19 @@ def parser(url):
                         size = text[-1].split('\n')[1]
                 except:
                     continue
+                if 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie' in url:
+                    name_file = 'male'
+                else:
+                    name_file = 'female'
+
+
+                if '%D0%9B%D0%B5%D1%82%D0%BE' in url:
+                    season = 'summer'
+                elif '%D0%97%D0%B8%D0%BC%D0%B0' in url:
+                    season = 'winter'
+                elif '%D0%94%D0%B5%D0%BC%D0%B8%D1%81%D0%B5%D0%B7%D0%BE%D0%BD' in url:
+                    season = 'demi'
+
 
                 data.append({
                     'manufacturer': text[-5].split(':')[1].strip(),
@@ -79,13 +92,12 @@ def parser(url):
                     'price': text[-2].replace(' ', '').split('.')[0],
                     'image': image,
                     'size': size_filter(size),
-                    'link': link
+                    'link': link,
+                    'sex': name_file,
+                    'season':  season
                 })
-            if 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie' in url:
-                name_file = 'male'
-            else:
-                name_file = 'female'
-            with open(f'{name_file}_sneakers_data.json', 'w', encoding='utf-8') as file:
+
+            with open(f'{name_file}_{season}_sneakers_data.json', 'w', encoding='utf-8') as file:
                 json.dump(data, file, indent=4, ensure_ascii=False)
             driver.find_element(By.CSS_SELECTOR, f'[data-page="{lst}"]').click()
 
@@ -102,22 +114,60 @@ def parser(url):
 def main():
     while True:
 
-        url_female = 'https://brand-in-hand.ru/krossovki/krossovki-zhenskie/#?page=1&price_min=1450.0000&price_max=9900.0000'
-        parser(url_female)
-        source_path_female = "female_sneakers_data.json"
-        dest_path_female = "filters/female_sneakers_data.json"
-        os.replace(source_path_female, dest_path_female)
-        time.sleep(60)
+        url_female_demi = 'https://brand-in-hand.ru/krossovki/krossovki-zhenskie/#?page=1&attribute=2_%D0%94%D0%B5%D0%BC%D0%B8%D1%81%D0%B5%D0%B7%D0%BE%D0%BD&price_min=1450.0000&price_max=9900.0000'
+        parser(url_female_demi)
+        source_path_female_demi = "female_demi_sneakers_data.json"
+        dest_path_female_demi = "filters/female_demi_sneakers_data.json"
+        os.replace(source_path_female_demi, dest_path_female_demi)
+        time.sleep(30)
 
-        url_male = 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie/#?page=1&price_min=1370.0000&price_max=11390.0000'
-        parser(url_male)
-        source_path_male = "male_sneakers_data.json"
-        dest_path_male = "filters/male_sneakers_data.json"
-        os.replace(source_path_male, dest_path_male)
+        url_female_summer = 'https://brand-in-hand.ru/krossovki/krossovki-zhenskie/#?page=1&attribute=2_%D0%9B%D0%B5%D1%82%D0%BE&price_min=1450.0000&price_max=9900.0000'
+        parser(url_female_summer)
+        source_path_female_summer = "female_summer_sneakers_data.json"
+        dest_path_female_summer = "filters/female_summer_sneakers_data.json"
+        os.replace(source_path_female_summer, dest_path_female_summer)
+        time.sleep(30)
+
+        url_female_winter = 'https://brand-in-hand.ru/krossovki/krossovki-zhenskie/#?page=1&attribute=2_%D0%97%D0%B8%D0%BC%D0%B0&price_min=1450.0000&price_max=9900.0000'
+        parser(url_female_winter)
+        source_path_female_winter = "female_winter_sneakers_data.json"
+        dest_path_female_winter = "filters/female_winter_sneakers_data.json"
+        os.replace(source_path_female_winter, dest_path_female_winter)
+        time.sleep(30)
 
 
 
-        time.sleep(100)
+
+
+
+        url_male_demi = 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie/#?page=1&attribute=2_%D0%94%D0%B5%D0%BC%D0%B8%D1%81%D0%B5%D0%B7%D0%BE%D0%BD&price_min=1370.0000&price_max=11390.0000'
+        parser(url_male_demi)
+        source_path_male_demi = "male_demi_sneakers_data.json"
+        dest_path_male_demi = "filters/male_demi_sneakers_data.json"
+        os.replace(source_path_male_demi, dest_path_male_demi)
+        time.sleep(30)
+
+        url_male_summer = 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie/#?page=1&attribute=2_%D0%9B%D0%B5%D1%82%D0%BE&price_min=1370.0000&price_max=11390.0000'
+        parser(url_male_summer)
+        source_path_male_summer = "male_summer_sneakers_data.json"
+        dest_path_male_summer = "filters/male_summer_sneakers_data.json"
+        os.replace(source_path_male_summer, dest_path_male_summer)
+        time.sleep(30)
+
+        url_male_winter = 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie/#?page=1&attribute=2_%D0%97%D0%B8%D0%BC%D0%B0&price_min=1370.0000&price_max=11390.0000'
+        parser(url_male_winter)
+        source_path_male_winter = "male_winter_sneakers_data.json"
+        dest_path_male_winter = "filters/male_winter_sneakers_data.json"
+        os.replace(source_path_male_winter, dest_path_male_winter)
+        time.sleep(30)
+
+
+
+
+
+
+
+        time.sleep(10800)
 
 
 

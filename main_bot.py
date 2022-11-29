@@ -25,11 +25,17 @@ dp = Dispatcher(bot, storage=storage)
 
 # States
 class Form(StatesGroup):
-    manufacturer = State()  # Will be represented in storage as 'Form:name'
-    size = State()  # Will be represented in storage as 'Form:age'
 
+    manufacturer = State()  # Will be represented in storage as 'Form:name'
+    size = State()
     model = State()
+    season = State()
     gender = State()
+
+  # Will be represented in storage as 'Form:age'
+
+
+
 
 
 @dp.message_handler(commands='start')
@@ -62,15 +68,31 @@ async def process_manufacturer(call: types.callback_query):
     markup.add(button_male, button_female)
     await bot.send_message(call.message.chat.id, 'Мужские или женские?', reply_markup=markup)
 
-
 @dp.callback_query_handler(lambda c: c.data == 'Male' or c.data == 'Female')
+async def process_manufacturer(call: types.callback_query, state: FSMContext):
+    """
+    Conversation's entry point
+
+    """
+    async with state.proxy() as data:
+        data['gender'] = call.data
+    # Set state
+    await bot.answer_callback_query(call.id)
+    markup = InlineKeyboardMarkup()
+    button_winter = InlineKeyboardMarkup(text='Зимние', callback_data='winter')
+    button_demi = InlineKeyboardMarkup(text='Демисезонные', callback_data='demi')
+    button_summer = InlineKeyboardMarkup(text='Летние', callback_data='summer')
+    markup.add(button_winter, button_demi, button_summer)
+    await bot.send_message(call.message.chat.id, 'Какой сезон?', reply_markup=markup)
+@dp.callback_query_handler(lambda c: c.data == 'winter' or c.data == 'demi' or c.data == 'summer')
 async def process_manufacturer(call: types.callback_query, state: FSMContext):
     """
     Conversation's entry point
     """
 
+
     async with state.proxy() as data:
-        data['gender'] = call.data
+        data['season'] = call.data
     # Set state
     await bot.answer_callback_query(call.id)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
@@ -78,6 +100,11 @@ async def process_manufacturer(call: types.callback_query, state: FSMContext):
 
     await Form.manufacturer.set()
     await bot.send_message(call.message.chat.id, "Какой бренд обуви вы хотите?", reply_markup=markup)
+
+
+
+
+
 
 
 # You can use state '*' if you need to handle all states
@@ -128,10 +155,11 @@ async def process_min_price(message: types.Message, state: FSMContext):
     """
     async with state.proxy() as data:
         data['size'] = message.text
-    print(data['size'])
+    print(data['season'], data['manufacturer'], data['gender'])
+
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
 
-    search = search_data(data['manufacturer'], int(data['size']))
+    search = search_data(data['gender'], data['season'], data['manufacturer'], int(data['size']))
     if len(search) == 0:
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
         markup.add('/start')
@@ -148,7 +176,8 @@ async def process_min_price(message: types.Message, state: FSMContext):
 async def process_gender(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['model'] = message.text
-        search = search_data(data['manufacturer'], int(data['size']))
+        print(data['gender'], data['season'], data['manufacturer'])
+        search = search_data(data['gender'], data['season'], data['manufacturer'], int(data['size']))
         total_search = searth_model(data['manufacturer'], data['model'], search)
         count = 0
         # if len(total_search) == 0:
@@ -165,7 +194,6 @@ async def process_gender(message: types.Message, state: FSMContext):
                 message.chat.id, md.text(
                     md.hide_link(val['image']),
                     md.text(val['name'], '\n'),
-
                     md.hlink('Купить', val['link']),
                     # md.text(data['gender'])
                 ), parse_mode=ParseMode.HTML)
