@@ -1,3 +1,4 @@
+# -*- coding: cp1251 -*-
 import logging
 import aiogram.utils.markdown as md
 from aiogram import Bot, Dispatcher, types
@@ -13,13 +14,7 @@ from filters.def_filters import search_data, unic_model, searth_model, unic_name
 
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = '5803089804:AAGV3GbC3AhyiRmVEEnNjofW5svmZ6XM57A'
-
-
-
-
-
-
+API_TOKEN = '5429272897:AAEambLvd2TsehQxfX5DoyKIXYLa_yS1TZc'
 
 bot = Bot(token=API_TOKEN)
 
@@ -32,8 +27,7 @@ dp = Dispatcher(bot, storage=storage)
 class Form(StatesGroup):
     manufacturer = State()  # Will be represented in storage as 'Form:name'
     size = State()  # Will be represented in storage as 'Form:age'
-    min_price = State()  # Will be represented in storage as 'Form:gender'
-    max_price = State()
+
     model = State()
     gender = State()
 
@@ -45,12 +39,15 @@ async def cmd_start(message: types.Message):
     """
     # Set state
     markup = InlineKeyboardMarkup()
-    button1 = InlineKeyboardMarkup(text='Catalog', callback_data='Catalog')
-    button2 = InlineKeyboardMarkup(text='Go to site', url='https://brand-in-hand.ru')
-    button3 = InlineKeyboardMarkup(text='Contact the manager', url='t.me/Pavel_Paulov')
+    button1 = InlineKeyboardMarkup(text='Каталог', callback_data='Catalog')
+    button2 = InlineKeyboardMarkup(text='Наш сайт', url='https://brand-in-hand.ru')
+    button3 = InlineKeyboardMarkup(text='Связь с нами', url='t.me/potapov93')
     markup.add(button1, button2, button3)
 
-    await bot.send_message(message.chat.id, "qweasdqweasdqweasdqweasd\nqweqweqweqweqweqw\nqweqweqweqweqwe\nqweqweqweqwe", reply_markup=markup)
+    await bot.send_message(message.chat.id,
+                           "Привет ??, мы интернет-магазин brand in hand ?.Специально для вас мы разработали этот бот ? чтобы вы могли частично ознакомиться с нашими ?. По факту же ассортимент магазина огромный и включает в себя верхнюю одежду ?, а также много стильных аксессуаров ????? нажимайте 'перейти на сайт' ? и убедитесь сами.Мы уверены в качестве нашей продукции на все ? и хотим чтобы вы сами смогли это проверить ?. И поэтому мы дарим вам?купон на бесплатную доставку прям до двери? с возможностью оплаты после примерки ??Вводите???BOT500???при оформлении товара и наслаждайтесь покупками?Купон действует только на обувь и на обувь+любая позиция. Успевайте?? срок действия акции строго ограничен.",
+                           reply_markup=markup)
+
 
 @dp.callback_query_handler(lambda c: c.data == 'Catalog')
 async def process_manufacturer(call: types.callback_query):
@@ -60,10 +57,10 @@ async def process_manufacturer(call: types.callback_query):
     # Set state
     await bot.answer_callback_query(call.id)
     markup = InlineKeyboardMarkup()
-    button_male = InlineKeyboardMarkup(text='Male', callback_data='Male')
-    button_female = InlineKeyboardMarkup(text='Female', callback_data='Female')
+    button_male = InlineKeyboardMarkup(text='Мужские кроссовки', callback_data='Male')
+    button_female = InlineKeyboardMarkup(text='Женские кроссовки', callback_data='Female')
     markup.add(button_male, button_female)
-    await bot.send_message(call.message.chat.id, 'qwe', reply_markup=markup)
+    await bot.send_message(call.message.chat.id, 'Мужские или женские?', reply_markup=markup)
 
 
 @dp.callback_query_handler(lambda c: c.data == 'Male' or c.data == 'Female')
@@ -80,16 +77,12 @@ async def process_manufacturer(call: types.callback_query, state: FSMContext):
     markup.add(*sorted(unic_name()))
 
     await Form.manufacturer.set()
-    await bot.send_message(call.message.chat.id, "What brand of shoes do you want?", reply_markup=markup)
-
-
-
-
+    await bot.send_message(call.message.chat.id, "Какой бренд обуви вы хотите?", reply_markup=markup)
 
 
 # You can use state '*' if you need to handle all states
-@dp.message_handler(state='*', commands='cancel')
-@dp.message_handler(Text(equals='cancel', ignore_case=True), state='*')
+@dp.message_handler(state='*', commands='stop')
+@dp.message_handler(Text(equals='stop', ignore_case=True), state='*')
 async def cancel_handler(message: types.Message, state: FSMContext):
     """
     Allow user to cancel any action
@@ -112,12 +105,11 @@ async def process_manufacturer(message: types.Message, state: FSMContext):
     """
     async with state.proxy() as data:
         data['manufacturer'] = message.text
+    print(data['manufacturer'])
     markup = types.ReplyKeyboardRemove()
 
     await Form.next()
-    await message.reply("What size you need?", reply_markup=markup, parse_mode=ParseMode.MARKDOWN)
-
-
+    await message.reply("Какой размер вам нужен?", reply_markup=markup, parse_mode=ParseMode.MARKDOWN)
 
 
 # Check age. Age gotta be digit
@@ -126,9 +118,7 @@ async def process_size_invalid(message: types.Message):
     """
     If size is invalid
     """
-    return await message.reply("Size gotta be a number.\nWhat size you need? (digits only)")
-
-
+    return await message.reply("Размер должен быть числом.\nКакой размер вам нужен? (только цифры)")
 
 
 @dp.message_handler(state=Form.size)
@@ -138,77 +128,27 @@ async def process_min_price(message: types.Message, state: FSMContext):
     """
     async with state.proxy() as data:
         data['size'] = message.text
-
-    await Form.next()
-    await message.reply("What min price you need?")
-
-
-
-
-# Check age. Age gotta be digit
-@dp.message_handler(lambda message: not message.text.isdigit(), state=Form.min_price)
-async def process_min_price_invalid(message: types.Message):
-    """
-    If min price is invalid
-    """
-    return await message.reply("Price gotta be a number.\nWhat min price you need? (digits only)")
-
-
-
-@dp.message_handler(state=Form.min_price)
-async def process_max_price(message: types.Message, state: FSMContext):
-    """
-    Process manufacturer
-    """
-    async with state.proxy() as data:
-        data['min_price'] = message.text
-
-    await Form.next()
-    await message.reply("What max price you need?")
-
-
-
-
-@dp.message_handler(lambda message: not message.text.isdigit(), state=Form.max_price)
-async def process_max_price_invalid(message: types.Message):
-    """
-    If max price is invalid
-    """
-    return await message.reply("Price gotta be a number.\nWhat price you need? (digits only)")
-
-@dp.message_handler(state=Form.max_price)
-async def process_max_price(message: types.Message, state: FSMContext):
-    """
-    Conversation's entry point
-    """
-    async with state.proxy() as data:
-        data['max_price'] = message.text
-
+    print(data['size'])
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
 
-    search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
+    search = search_data(data['manufacturer'], int(data['size']))
     if len(search) == 0:
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
         markup.add('/start')
-        await message.reply('Try again', reply_markup=markup)
+        await message.reply('Ничего не найдено\nПопробуй еще раз', reply_markup=markup)
         await Form.next()
     else:
 
         markup.add(*sorted(unic_model(data['manufacturer'], search)))
-        await Form.max_price.set()
-        await message.reply("What model you need?", reply_markup=markup)
+        await message.reply("Какая модель вам нужна?", reply_markup=markup)
         await Form.next()
-
-
-
 
 
 @dp.message_handler(state=Form.model)
 async def process_gender(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['model'] = message.text
-
-        search = search_data(data['manufacturer'], int(data['size']), int(data['min_price']), int(data['max_price']))
+        search = search_data(data['manufacturer'], int(data['size']))
         total_search = searth_model(data['manufacturer'], data['model'], search)
         count = 0
         # if len(total_search) == 0:
@@ -225,17 +165,18 @@ async def process_gender(message: types.Message, state: FSMContext):
                 message.chat.id, md.text(
                     md.hide_link(val['image']),
                     md.text(val['name'], '\n'),
-                    md.text(val['price'] + ' p', '\n'),
-                    md.hlink('click to buy', val['link']),
-                    md.text(data['gender'])
-                    ), parse_mode=ParseMode.HTML)
+
+                    md.hlink('Купить', val['link']),
+                    # md.text(data['gender'])
+                ), parse_mode=ParseMode.HTML)
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
         markup.add('/start')
         await Form.manufacturer.set()
-        await message.reply("Try again", reply_markup=markup)
+        await message.reply("Нажмите start что бы попробовать сново", reply_markup=markup)
 
     # Finish conversation
     await state.finish()
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

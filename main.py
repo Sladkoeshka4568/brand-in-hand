@@ -117,11 +117,10 @@ def main():
 
 
 
-        time.sleep(10800)
+        time.sleep(100)
 
 
 
 if __name__ == '__main__':
     main()
-
 
