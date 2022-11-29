@@ -8,12 +8,23 @@ from selenium.common.exceptions import StaleElementReferenceException
 import time
 import json
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-import shutil
-from os import path
-from threading import Thread
+
+
 
 start_time = time.time()
-
+def size_filter(a):
+    num_list = []
+    num = ''
+    for char in a:
+        if char.isdigit():
+            num = num + char
+        else:
+            if num != '':
+                num_list.append(int(num))
+                num = ''
+                if num != '':
+                    num_list.append(int(num))
+    return num_list
 def parser(url):
     try:
         data = []
@@ -67,7 +78,7 @@ def parser(url):
                     'vendor code': text[-3].split(':')[1].strip(),
                     'price': text[-2].replace(' ', '').split('.')[0],
                     'image': image,
-                    'size': size.split(' '),
+                    'size': size_filter(size),
                     'link': link
                 })
             if 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie' in url:
@@ -94,26 +105,23 @@ def main():
         url_female = 'https://brand-in-hand.ru/krossovki/krossovki-zhenskie/#?page=1&price_min=1450.0000&price_max=9900.0000'
         parser(url_female)
         source_path_female = "female_sneakers_data.json"
+        dest_path_female = "filters/female_sneakers_data.json"
+        os.replace(source_path_female, dest_path_female)
         time.sleep(60)
+
         url_male = 'https://brand-in-hand.ru/krossovki/krossovki-muzhskie/#?page=1&price_min=1370.0000&price_max=11390.0000'
         parser(url_male)
         source_path_male = "male_sneakers_data.json"
+        dest_path_male = "filters/male_sneakers_data.json"
+        os.replace(source_path_male, dest_path_male)
 
 
 
-
-
-        destination_path = "filters"
-        path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'filters/female_sneakers_data.json')
-        os.remove(path)
-        path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'filters/male_sneakers_data.json')
-        os.remove(path)
-        shutil.move(source_path_female, destination_path)
-        shutil.move(source_path_male, destination_path)
         time.sleep(10800)
 
 
 
 if __name__ == '__main__':
     main()
+
 

@@ -8,16 +8,15 @@ with open('filters/male_sneakers_data.json', 'r', encoding='utf-8') as file:
     data_male = json.load(file)
 data_shoes = data_male + data_female
 
-def search_data(manufacturer=None, size=None, price_min=None, price_max=None):
+def search_data(manufacturer=None, size=None):
     result = []
     for f in data_shoes:
         if f['manufacturer'] == manufacturer:
-            if int(f['price']) >= price_min and int(f['price']) <= price_max:
-                for s in f['size']:
-                    if size == int(s):
-                        result.append(f)
-                    else:
-                        continue
+            for s in f['size']:
+                if size == int(s):
+                    result.append(f)
+                else:
+                    continue
     return result
 
 def unic_name():
