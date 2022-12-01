@@ -40,7 +40,7 @@ def parser(url):
         time.sleep(5)
         len_str = driver.find_element(By.XPATH, '//*[@id="content"]/div/div[3]/div[2]').text.split(' ')[-2]
 
-        for lst in range(2, int(len_str)+1):
+        for lst in range(2, int(len_str)+2):
 
             print('___________________', lst-1, '___________________')
             time.sleep(2)

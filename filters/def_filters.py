@@ -36,9 +36,18 @@ def search_data(sex= None, season=None, manufacturer=None, size=None):
                             continue
     return result
 
-def unic_name():
+def search_data_button(sex= None, season=None):
     result = []
-    for d in data_shoes:
+    for f in data_shoes:
+        if f['sex'] == sex.lower():
+            if f['season'] == season:
+                result.append(f)
+            else:
+                continue
+    return result
+def unic_name(data):
+    result = []
+    for d in data:
         result.append(d['manufacturer'])
     result = set(result)
     result = list(result)
@@ -61,4 +70,3 @@ def searth_model(brand, name_model, data):
     return result
 
 
-print(search_data(''))

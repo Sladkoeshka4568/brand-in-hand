@@ -10,7 +10,7 @@ from aiogram.types import ParseMode, InlineKeyboardMarkup
 from aiogram.utils import executor
 import json
 
-from filters.def_filters import search_data, unic_model, searth_model, unic_name
+from filters.def_filters import search_data, unic_model, searth_model, unic_name, search_data_button
 
 logging.basicConfig(level=logging.INFO)
 
@@ -43,16 +43,23 @@ async def cmd_start(message: types.Message):
     """
     Conversation's entry point
     """
+
+    'https://sun9-43.userapi.com/impg/xwHWyQDk-gutDSnII80fs_lzoFlN4532-kAKTg/8wU0nins56A.jpg?size=1280x1280&quality=95&sign=f0095eb42ccb75bb98766ab66b45ec2f&type=album'
     # Set state
     markup = InlineKeyboardMarkup()
     button1 = InlineKeyboardMarkup(text='Каталог', callback_data='Catalog')
     button2 = InlineKeyboardMarkup(text='Наш сайт', url='https://brand-in-hand.ru')
     button3 = InlineKeyboardMarkup(text='Связь с нами', url='t.me/potapov93')
     markup.add(button1, button2, button3)
+    await bot.send_message(
+        message.chat.id, md.text(
+            md.text("Привет ??, мы интернет-магазин brand in hand ?.Специально для вас мы разработали этот бот ? чтобы вы могли частично ознакомиться с нашими ?. По факту же ассортимент магазина огромный и включает в себя верхнюю одежду ?, а также много стильных аксессуаров ????? нажимайте 'перейти на сайт' ? и убедитесь сами.Мы уверены в качестве нашей продукции на все ? и хотим чтобы вы сами смогли это проверить ?. И поэтому мы дарим вам?купон на бесплатную доставку прям до двери? с возможностью оплаты после примерки ??Вводите???BOT500???при оформлении товара и наслаждайтесь покупками?Купон действует только на обувь и на обувь+любая позиция. Успевайте?? срок действия акции строго ограничен."),
+            md.hide_link("https://sun9-43.userapi.com/impg/xwHWyQDk-gutDSnII80fs_lzoFlN4532-kAKTg/8wU0nins56A.jpg?size=1280x1280&quality=95&sign=f0095eb42ccb75bb98766ab66b45ec2f&type=album"),
 
-    await bot.send_message(message.chat.id,
-                           "Привет ??, мы интернет-магазин brand in hand ?.Специально для вас мы разработали этот бот ? чтобы вы могли частично ознакомиться с нашими ?. По факту же ассортимент магазина огромный и включает в себя верхнюю одежду ?, а также много стильных аксессуаров ????? нажимайте 'перейти на сайт' ? и убедитесь сами.Мы уверены в качестве нашей продукции на все ? и хотим чтобы вы сами смогли это проверить ?. И поэтому мы дарим вам?купон на бесплатную доставку прям до двери? с возможностью оплаты после примерки ??Вводите???BOT500???при оформлении товара и наслаждайтесь покупками?Купон действует только на обувь и на обувь+любая позиция. Успевайте?? срок действия акции строго ограничен.",
-                           reply_markup=markup)
+        ), parse_mode=ParseMode.HTML, reply_markup=markup)
+
+
+
 
 
 @dp.callback_query_handler(lambda c: c.data == 'Catalog')
@@ -96,7 +103,9 @@ async def process_manufacturer(call: types.callback_query, state: FSMContext):
     # Set state
     await bot.answer_callback_query(call.id)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
-    markup.add(*sorted(unic_name()))
+    sort = search_data_button(data['gender'], data['season'])
+
+    markup.add(*sorted(unic_name(sort)))
 
     await Form.manufacturer.set()
     await bot.send_message(call.message.chat.id, "Какой бренд обуви вы хотите?", reply_markup=markup)
@@ -194,6 +203,7 @@ async def process_gender(message: types.Message, state: FSMContext):
                 message.chat.id, md.text(
                     md.hide_link(val['image']),
                     md.text(val['name'], '\n'),
+                    md.text(val['price'], 'p', '\n'),
                     md.hlink('Купить', val['link']),
                     # md.text(data['gender'])
                 ), parse_mode=ParseMode.HTML)

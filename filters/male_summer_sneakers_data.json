@@ -60,17 +60,6 @@
         "season": "summer"
     },
     {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE AIR MAX PLUS TN",
-        "vendor code": "32223",
-        "price": "5600",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/32223/Nike-krossovki-Nike-Air-Max-Plus-TN-1-333x250.jpg",
-        "size": [],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-nike/krossovki-nike-air-max-plus-tn-32223.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
         "manufacturer": "Vans",
         "name": "КЕДЫ VANS OLD SKOOL",
         "vendor code": "32002",
@@ -2332,17 +2321,6 @@
         "season": "summer"
     },
     {
-        "manufacturer": "CROCS",
-        "name": "САБО CROCS",
-        "vendor code": "30352",
-        "price": "3600",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/30352/Crocs-sabo-CROCS-1-333x250.jpg",
-        "size": [],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/sabo-crocs-30352.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
         "manufacturer": "Dior",
         "name": "КРОССОВКИ DIOR B23 HIGH",
         "vendor code": "30349",
@@ -2796,8 +2774,7 @@
             40,
             41,
             42,
-            43,
-            44
+            43
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-adidas/krossovki-adidas-zx-5k-boost-30044.html",
         "sex": "male",
@@ -6041,7 +6018,9 @@
         "vendor code": "27231",
         "price": "5600",
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/27231/Adidas-futbolnaa-obuv-Adidas-X-Speedflow-1-IN-1-333x250.jpg",
-        "size": [],
+        "size": [
+            41
+        ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-futbolnye/futbolnaa-obuv-adidas-x-speedflow-1-in-27231.html",
         "sex": "male",
         "season": "summer"
@@ -7564,17 +7543,6 @@
             44
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-adidas/krossovki-adidas-niteball-24554.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Reebok",
-        "name": "КРОССОВКИ REEBOK CLASSIC LEATHER LEGACY",
-        "vendor code": "24531",
-        "price": "5400",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/24531/Reebok-krossovki-Reebok-Classic-Leather-Legacy-1-333x250.jpg",
-        "size": [],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-reebok/krossovki-reebok-classic-leather-legacy-24531.html",
         "sex": "male",
         "season": "summer"
     },
@@ -10841,135 +10809,6 @@
             43
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-adidas/krossovki-adidas-yeezy-350-boost-v2-5925.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Vans",
-        "name": "КЕДЫ VANS OLD SKOOL",
-        "vendor code": "5310",
-        "price": "4400",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/5310/Vans-kedy-VANS-Old-Skool-1-333x250.jpg",
-        "size": [
-            41,
-            42,
-            43,
-            44,
-            45
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-vans/kedy-vans-old-skool-5310.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE AIR MAX 2017",
-        "vendor code": "5221",
-        "price": "5500",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/5221/Nike-krossovki-Nike-Air-Max-2017-1-333x250.jpg",
-        "size": [
-            40,
-            42,
-            43
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-nike/krossovki-nike-air-max-2017-5221.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Adidas",
-        "name": "КРОССОВКИ ADIDAS EQT SUPPORT ADV",
-        "vendor code": "5205",
-        "price": "5200",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/5205/Adidas-krossovki-Adidas-EQT-Support-ADV-1-333x250.jpg",
-        "size": [
-            41,
-            42,
-            43,
-            44
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-adidas/krossovki-adidas-eqt-support-adv-5205.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Adidas",
-        "name": "КРОССОВКИ ADIDAS EQT SUPPORT ADV",
-        "vendor code": "5059",
-        "price": "5200",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/5059/Adidas-krossovki-Adidas-EQT-Support-ADV-1-333x250.jpg",
-        "size": [
-            41,
-            42,
-            43,
-            44
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-adidas-eqt-support-adv-5059.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE AIR MAX ZERO",
-        "vendor code": "3021",
-        "price": "5000",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/3021/Nike-krossovki-Nike-Air-Max-Zero-1-333x250.jpg",
-        "size": [
-            44
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-nike-air-max-zero-3021.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE FREE 3.0 V2",
-        "vendor code": "2948",
-        "price": "4200",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/2948/Nike-krossovki-Nike-Free-3-0-V2-1-333x250.jpg",
-        "size": [
-            41,
-            44
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-nike/krossovki-nike-free-3-0-v2-2948.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE FREE 3.0 V2",
-        "vendor code": "2812",
-        "price": "4100",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/2812/Nike-krossovki-Nike-Free-3-0-V2-1-333x250.jpg",
-        "size": [
-            41,
-            44
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-muzhskie-nike/krossovki-nike-free-3-0-v2-2812.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE FREE 3.0 V2",
-        "vendor code": "423",
-        "price": "4200",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/423/Nike-krossovki-Nike-Free-3-0-V2-1-333x250.jpg",
-        "size": [
-            41
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-nike-free-3-0-v2-423.html",
-        "sex": "male",
-        "season": "summer"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE CORTEZ NYLON",
-        "vendor code": "405",
-        "price": "5000",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/405/Nike-krossovki-Nike-Cortez-Nylon-1-333x250.jpg",
-        "size": [],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-muzhskie/krossovki-nike-cortez-nylon-405.html",
         "sex": "male",
         "season": "summer"
     }

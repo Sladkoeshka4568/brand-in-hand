@@ -1228,18 +1228,18 @@
         "season": "demi"
     },
     {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE AIR JORDAN 11 LOW",
+        "manufacturer": "Jordan",
+        "name": "КРОССОВКИ JORDAN AIR JORDAN 11 LOW",
         "vendor code": "30953",
         "price": "6100",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/30953/Nike-krossovki-Nike-Air-Jordan-11-Low-1-333x250.jpg",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/30953/Jordan-krossovki-Jordan-Air-Jordan-11-Low-1-333x250.jpg",
         "size": [
             36,
             37,
             38,
             39
         ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-jordan-11-low-30953.html",
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-jordan-air-jordan-11-low-30953.html",
         "sex": "female",
         "season": "demi"
     },
@@ -1870,13 +1870,13 @@
         "name": "КРОССОВКИ REEBOK CLUB C DOUBLE GEO",
         "vendor code": "30328",
         "price": "5600",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/30424/Nike-krossovki-Nike-Air-Force-1-Low-1-333x250.jpg",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/30328/Reebok-krossovki-Reebok-Club-C-Double-GEO-1-333x250.jpg",
         "size": [
             36,
             37,
             38
         ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-force-1-low-30424.html",
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-reebok/krossovki-reebok-club-c-double-geo-30328.html",
         "sex": "female",
         "season": "demi"
     },
@@ -2552,8 +2552,7 @@
         "price": "5900",
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/29961/Nike-krossovki-Nike-Air-Max-90-1-333x250.jpg",
         "size": [
-            36,
-            37
+            36
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-max-90-29961.html",
         "sex": "female",
@@ -2789,7 +2788,9 @@
         "vendor code": "29816",
         "price": "5900",
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/29816/Nike-krossovki-Union-x-Nike-Cortez-Nylon-1-333x250.jpg",
-        "size": [],
+        "size": [
+            36
+        ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-union-x-nike-cortez-nylon-29816.html",
         "sex": "female",
         "season": "demi"
@@ -2868,22 +2869,6 @@
             36
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-jordan-5-29793.html",
-        "sex": "female",
-        "season": "demi"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "КРОССОВКИ NIKE AIR JORDAN 1 MID",
-        "vendor code": "29769",
-        "price": "5340",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/29937/Nike-krossovki-Nike-Air-Jordan-1-Mid-1-333x250.jpg",
-        "size": [
-            36,
-            37,
-            38,
-            39
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-jordan-1-mid-29937.html",
         "sex": "female",
         "season": "demi"
     },
@@ -3093,8 +3078,7 @@
         "price": "6400",
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/29694/Nike-krossovki-Nike-Air-Jordan-6-1-333x250.jpg",
         "size": [
-            36,
-            37
+            36
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-jordan-6-29694.html",
         "sex": "female",
@@ -3941,8 +3925,7 @@
         "size": [
             36,
             37,
-            38,
-            39
+            38
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-max-97-28701.html",
         "sex": "female",
@@ -6288,11 +6271,11 @@
         "name": "КРОССОВКИ ADIDAS SUPERSTAR",
         "vendor code": "26917",
         "price": "4900",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/27049/New-balance-krossovki-New-Balance-574-1-333x250.jpg",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/26917/Adidas-krossovki-Adidas-Superstar-1-333x250.jpg",
         "size": [
             37
         ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-new-balance/krossovki-new-balance-574-27049.html",
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-adidas/krossovki-adidas-superstar-26917.html",
         "sex": "female",
         "season": "demi"
     },
@@ -7122,14 +7105,14 @@
         "name": "КРОССОВКИ NIKE AIR FORCE 1 LOW",
         "vendor code": "25376",
         "price": "5500",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/25754/Nike-krossovki-Nike-Air-Force-1-Low-1-333x250.jpg",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/25376/Nike-krossovki-Nike-Air-Force-1-Low-1-333x250.jpg",
         "size": [
             36,
             37,
             38,
             39
         ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-force-1-low-25754.html",
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-force-1-low-25376.html",
         "sex": "female",
         "season": "demi"
     },
@@ -9153,19 +9136,6 @@
         "season": "demi"
     },
     {
-        "manufacturer": "Adidas",
-        "name": "КРОССОВКИ ADIDAS YEEZY BOOST 700",
-        "vendor code": "22748",
-        "price": "4480",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/23043/Nike-krossovki-Nike-Air-Jordan-1-Mid-1-333x250.jpg",
-        "size": [
-            36
-        ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-jordan-1-mid-23043.html",
-        "sex": "female",
-        "season": "demi"
-    },
-    {
         "manufacturer": "Nike",
         "name": "КРОССОВКИ NIKE LEBRON XVIII",
         "vendor code": "22742",
@@ -9817,8 +9787,7 @@
         "price": "5600",
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/22167/Salomon-krossovki-Salomon-SPEEDCROSS-3-CS-1-333x250.jpg",
         "size": [
-            37,
-            38
+            37
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-salomon/krossovki-salomon-speedcross-3-cs-22167.html",
         "sex": "female",
@@ -9946,12 +9915,12 @@
         "name": "КРОССОВКИ NIKE MX-720-818",
         "vendor code": "21777",
         "price": "4920",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/22188/Adidas-krossovki-Adidas-Terrex-Swift-R2-GTX-1-333x250.jpg",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/21777/Nike-krossovki-Nike-MX-720-818-1-333x250.jpg",
         "size": [
             36,
             37
         ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-adidas/krossovki-adidas-terrex-swift-r2-gtx-22188.html",
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-mx-720-818-21777.html",
         "sex": "female",
         "season": "demi"
     },
@@ -11305,14 +11274,14 @@
         "name": "КРОССОВКИ NIKE AIR JORDAN 1 MID",
         "vendor code": "15521",
         "price": "5600",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/18765/Nike-krossovki-Nike-Air-Barrage-Mid-1-333x250.jpg",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/15521/Nike-krossovki-Nike-Air-Jordan-1-Mid-1-333x250.jpg",
         "size": [
             36,
             37,
             38,
             39
         ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-barrage-mid-18765.html",
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-jordan-1-mid-15521.html",
         "sex": "female",
         "season": "demi"
     },
@@ -11477,14 +11446,14 @@
         "name": "КРОССОВКИ NIKE AIR FORCE 1 LOW",
         "vendor code": "11768",
         "price": "5500",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/15521/Nike-krossovki-Nike-Air-Jordan-1-Mid-1-333x250.jpg",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/11768/Nike-krossovki-Nike-Air-Force-1-Low-1-333x250.jpg",
         "size": [
             36,
             37,
             38,
             39
         ],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-jordan-1-mid-15521.html",
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/krossovki-nike-air-force-1-low-11768.html",
         "sex": "female",
         "season": "demi"
     },
