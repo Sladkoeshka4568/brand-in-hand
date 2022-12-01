@@ -14,7 +14,7 @@ from filters.def_filters import search_data, unic_model, searth_model, unic_name
 
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = '5429272897:AAEambLvd2TsehQxfX5DoyKIXYLa_yS1TZc'
+API_TOKEN = '5401470023:AAHiV9JHV_HsBmujuXXcBDQQGj-gJB-Ziuc'
 
 bot = Bot(token=API_TOKEN)
 
@@ -205,7 +205,6 @@ async def process_gender(message: types.Message, state: FSMContext):
                     md.text(val['name'], '\n'),
                     md.text(val['price'], 'p', '\n'),
                     md.hlink('Купить', val['link']),
-                    # md.text(data['gender'])
                 ), parse_mode=ParseMode.HTML)
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True, selective=True)
         markup.add('/start')
