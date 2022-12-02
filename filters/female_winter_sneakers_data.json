@@ -281,8 +281,7 @@
             36,
             37,
             38,
-            39,
-            40
+            39
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-adidas/zimnie-krossovki-adidas-niteball-hi-32897.html",
         "sex": "female",
@@ -615,8 +614,7 @@
             36,
             37,
             38,
-            39,
-            40
+            39
         ],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-adidas/zimnie-sapogi-adidas-32762.html",
         "sex": "female",
@@ -1213,9 +1211,7 @@
         "vendor code": "30690",
         "price": "4300",
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/30690/Adidas-zimnie-sapogi-Adidas-1-333x250.jpg",
-        "size": [
-            36
-        ],
+        "size": [],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-adidas/zimnie-sapogi-adidas-30690.html",
         "sex": "female",
         "season": "winter"
@@ -1265,17 +1261,6 @@
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/30481/Adidas-zimnie-sapogi-Adidas-1-333x250.jpg",
         "size": [],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-adidas/zimnie-sapogi-adidas-30481.html",
-        "sex": "female",
-        "season": "winter"
-    },
-    {
-        "manufacturer": "Nike",
-        "name": "ЗИМНИЕ САПОГИ NIKE",
-        "vendor code": "30475",
-        "price": "4300",
-        "image": "https://brand-in-hand.ru/image/cache/catalog/products/30475/Nike-zimnie-sapogi-Nike-1-333x250.jpg",
-        "size": [],
-        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/zimnie-sapogi-nike-30475.html",
         "sex": "female",
         "season": "winter"
     },
@@ -1361,6 +1346,17 @@
         "image": "https://brand-in-hand.ru/image/cache/catalog/products/27189/Nike-zimnie-krossovki-Nike-Air-Jordan-1-Mid-1-333x250.jpg",
         "size": [],
         "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-nike/zimnie-krossovki-nike-air-jordan-1-mid-27189.html",
+        "sex": "female",
+        "season": "winter"
+    },
+    {
+        "manufacturer": "Fashion",
+        "name": "ЗИМНИЕ САПОГИ",
+        "vendor code": "26646",
+        "price": "3330",
+        "image": "https://brand-in-hand.ru/image/cache/catalog/products/26646/Fashion-zimnie-sapogi-1-333x250.jpg",
+        "size": [],
+        "link": "http://brand-in-hand.ru/krossovki/krossovki-zhenskie/krossovki-zhenskie-fashion/zimnie-sapogi-26646.html",
         "sex": "female",
         "season": "winter"
     },
